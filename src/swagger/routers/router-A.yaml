@@ -1,0 +1,52 @@
+paths:
+  /api/plan/list:
+    get:
+      tags:
+        - plan
+      summary: get plan list
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+      parameters:
+        - in: query
+          name: page
+          description: page number
+          required: false
+          type: integer
+        - in: query
+          name: count
+          description: count number
+          required: false
+          type: integer
+        - in: query
+          name: lop_objecttype
+          description: lop_objecttype
+          required: false
+          type: string
+        - in: query
+          name: lop_planname
+          description: lop_planname
+          required: false
+          type: string
+  /api/plan/{id}:
+    get:
+      tags:
+        - plan
+      summary: get plan detail by id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+      parameters:
+        - in: path
+          name: id
+          description: plan id
+          required: true
+          type: integer

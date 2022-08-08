@@ -1,0 +1,93 @@
+paths:
+  /api/category/list:
+    get:
+      tags:
+        - category
+      summary: get category list
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+      parameters:
+        - in: query
+          name: page
+          description: page number
+          required: false
+          type: integer
+        - in: query
+          name: count
+          description: count number
+          required: false
+          type: integer
+        - in: query
+          name: lca_loadtype
+          description: lca_loadtype
+          required: false
+          type: string
+        - in: query
+          name: lca_sourcesystem
+          description: lca_sourcesystem
+          required: false
+          type: string
+        - in: query
+          name: lca_subjectarea
+          description: lca_subjectarea
+          required: false
+          type: string
+        - in: query
+          name: lca_subject
+          description: lca_subject
+          required: false
+          type: string
+  /api/category/{id}:
+    get:
+      tags:
+        - category
+      summary: get category detail by id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+      parameters:
+        - in: path
+          name: id
+          description: category id
+          required: true
+          type: integer
+  /api/category/:
+    post:
+      tags:
+        - category
+      summary: create category
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+      parameters:
+        - in: body
+          name: category
+          description: category info
+          required: true
+          schema:
+            $ref: "#/definitions/category"
+definitions:
+  category:
+    type: object
+    properties:
+      lca_loadtype:
+        type: string
+      lca_sourcesystem:
+        type: string
+      lca_subjectarea:
+        type: string
+      lca_subject:
+        type: string
