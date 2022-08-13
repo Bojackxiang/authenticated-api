@@ -1,6 +1,5 @@
 import "dotenv/config";
 import express from "express";
-import gracefulShutdownHandler from "./utils/gracefulExit";
 import serverRunning from "./utils/severRunning";
 import builderRouters from "./router";
 import cookieSession from "cookie-session";
