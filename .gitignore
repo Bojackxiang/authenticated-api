@@ -1,4 +1,5 @@
 # ignore basic node project 
+.idea
 node_modules
 .vscode 
 package-lock.json
