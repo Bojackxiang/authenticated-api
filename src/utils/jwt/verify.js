@@ -1,16 +1,13 @@
 import { verify } from "jsonwebtoken";
 
-function jwtVerification(token) {
+const SECRET = process.env.JWT_SECRET;
+
+async function jwtVerification(token) {
   try {
-    verify(token, "shhhhh").promise();
-    return {
-      success: true,
-    };
+    verify(token, SECRET);
+    return true;
   } catch (error) {
-    return {
-      success: false,
-      message: error.message,
-    };
+    return false;
   }
 }
 
