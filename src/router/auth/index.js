@@ -64,4 +64,14 @@ router.get("/current-user", async (req, res) => {
   }
 });
 
+// sign up router
+router.post("/sign-out", async (req, res) => {
+  try {
+    req.session = null;
+    Response.success(res, {});
+  } catch (error) {
+    Response.error(res, { message: error.message });
+  }
+});
+
 export default router;
