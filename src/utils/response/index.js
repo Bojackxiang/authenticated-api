@@ -20,6 +20,14 @@ class Response {
       ...data,
     });
   }
+
+  static notFound(res, data) {
+    res.status(404).json({
+      success: false,
+      message: "not found",
+      ...data,
+    });
+  }
 }
 
 export default Response;
