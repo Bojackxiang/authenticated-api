@@ -4,7 +4,7 @@ const SECRET = process.env.JWT_SECRET;
 
 function jwtVerification(token) {
   try {
-    const result = verify(token, SECRET);
+    verify(token, SECRET);
     return true;
   } catch (error) {
     return false;
