@@ -2,9 +2,9 @@ import { verify } from "jsonwebtoken";
 
 const SECRET = process.env.JWT_SECRET;
 
-async function jwtVerification(token) {
+function jwtVerification(token) {
   try {
-    verify(token, SECRET);
+    const result = verify(token, SECRET);
     return true;
   } catch (error) {
     return false;

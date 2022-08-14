@@ -12,6 +12,14 @@ class Response {
       ...data,
     });
   }
+
+  static notAuthorized(res, data) {
+    res.status(401).json({
+      success: false,
+      message: "not authorized",
+      ...data,
+    });
+  }
 }
 
 export default Response;
