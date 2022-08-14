@@ -4,7 +4,7 @@ import { signUp, signIn } from "../../services/auth";
 import Response from "../../utils/response";
 import { body } from "express-validator";
 import { requestValidation } from "../../middlewares/validation";
-import { verifyJWTToken } from "../../utils/jwt";
+import requireAuth from "../../middlewares/auth/require-auth";
 
 const router = express.Router();
 
@@ -49,12 +49,12 @@ router.post(
 );
 
 // sign up router
-router.get("/current-user", async (req, res) => {
+
+router.get("/current-user", requireAuth, async (req, res) => {
   try {
-    const sessionToken = req.session.jwt;
-    const isTokenValid = await verifyJWTToken(sessionToken);
-    if (!sessionToken || !isTokenValid) {
-      Response.success(res, { currentUser: {} });
+    const currentUser = req.currentUser;
+    if (req.currentUser) {
+      Response.success(res, { currentUser });
     } else {
       // TODO: 这边可以将 用户的 id 一起数入，然后在数据库里查找一次用id
       Response.success(res, { currentUser: {} });
