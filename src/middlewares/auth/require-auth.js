@@ -11,7 +11,6 @@ async function requireAuth(req, res, next) {
 
   try {
     const isJwtVerified = jwtVerification(token);
-    console.log("isJwtVerified: ", isJwtVerified);
     if (!isJwtVerified) {
       return Response.notAuthorized(res, { message: "invalid jwt token" });
     }
