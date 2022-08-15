@@ -36,4 +36,20 @@ describe("[router] Sign up test", () => {
       .expect(400);
     expect(test.body.success).toEqual(false);
   });
+
+  it("it should has token in the cookie in the sign up response", async () => {
+    const response = await request(app)
+      .post("/auth/sign-up")
+      .send({
+        username: "username",
+        password: "password",
+      })
+      .expect(200);
+
+    expect(response.get("Set-Cookie")).toBeDefined();
+  });
+
+  // TODO: TEST INVALID PASSWORD
+
+  // TODO: TEST DUPLICATE USERNAME
 });
