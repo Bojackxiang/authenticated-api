@@ -9,7 +9,6 @@ const builderRouters = express.Router();
 builderRouters.use("/api-docs", swaggerRouter);
 builderRouters.use("/auth", auth);
 builderRouters.get("/profile", requireAuth, (req, res) => {
-  console.log("current user", req.currentUser);
   res.send("profile");
 });
 
