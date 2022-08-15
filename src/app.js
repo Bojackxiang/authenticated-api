@@ -10,6 +10,7 @@ app.set("trust proxy", true); // 用于解决 nginx 的代理问题
 app.use(
   cookieSession({
     signed: false,
+    secure: process.env.NODE_ENV !== "test",
     //secure: true, // cookie session only works in https, 注视掉，方便本地测试
   })
 );
