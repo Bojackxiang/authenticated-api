@@ -1,0 +1,83 @@
+definitions:
+  user:
+    type: object
+    required:
+      - username
+      - password
+    properties:
+      username:
+        type: string
+        example: "username"
+      password:
+        type: string
+        example: "password"
+  loginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+        description: JWT token
+      success:
+        type: boolean
+        description: true if login is successful
+      username:
+        type: string
+        description: username
+
+paths:
+  /auth/sign-up:
+    post:
+      summary: "create a new user account"
+      tags:
+        - auth
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            $ref: "#/definitions/user"
+            description: The user account to create
+      responses:
+        200:
+          description: success
+        400:
+          description: bad request
+  /auth/sign-in:
+    post:
+      summary: "User login"
+      tags:
+        - auth
+      parameters:
+        - in: body
+          name: user
+          description: User log in.
+          schema:
+            $ref: "#/definitions/user"
+            description: user login
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/loginResponse"
+                description: user login response
+
+        400:
+          description: bad request
+  /auth/sign-out:
+    post:
+      summary: "User login out"
+      tags:
+        - auth
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/loginResponse"
+                description: user login response
+
+        400:
+          description: bad request
